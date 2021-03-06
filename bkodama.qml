@@ -7,4 +7,3 @@ Window {
     visible: true
     title: qsTr("Hello World")
 }
- 
