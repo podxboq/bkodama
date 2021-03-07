@@ -1,13 +1,14 @@
 project(bkodama)
 
-#paranoid?
-cmake_minimum_required(VERSION 2.6.2)
+cmake_minimum_required(VERSION 3.16)
 
-find_package(KDE4 REQUIRED)
-include(KDE4Defaults)
-include(MacroLibrary)
-
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Core Widgets Quick QuickWidgets)
+# Use Extra CMake Modules (ECM) for common functionality.
+# See http://api.kde.org/ecm/manual/ecm.7.html
+# and http://api.kde.org/ecm/manual/ecm-kde-modules.7.html
+find_package(ECM REQUIRED NO_MODULE)
+# Needed by find_package(KF5Plasma) below.
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 
 string(TOLOWER ${CMAKE_BUILD_TYPE} CMAKE_BUILD_TYPE_TOLOWER)
 if(CMAKE_BUILD_TYPE_TOLOWER MATCHES debugfull)
@@ -17,10 +18,4 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wsign-compare -Wpointer-a
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
 endif()
 
-add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-include_directories(${KDE4_INCLUDES})
-
-add_subdirectory(data)
-add_subdirectory(src)
-
-macro_display_feature_log()
+add_subdirectory(plasmoid)
