@@ -9,7 +9,7 @@ Item {
     height: 100
     
     AnimatedSprite {
-        source: "../resources/" + plasmoid.configuration.sprite + ".png"
+        source: "../resources/bkodama.png"
         frameWidth: 100
         frameHeight: 100
         frameCount: 12
