@@ -1,21 +1,29 @@
 project(bkodama)
 
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 2.8.12)
+
+
+set(CMAKE_CXX_STANDARD 14)
+set(QT_MIN_VERSION "5.4.1")
+set(KF5_MIN_VERSION "5.9.0")
+set(CMAKE_INSTALL_PREFIX /usr)
+set(KDE_INSTALL_LIBDIR lib64/qt5)
 
 find_package(Qt5 ${QT_MIN_VERSION} CONFIG REQUIRED COMPONENTS Core Widgets Quick QuickWidgets)
-# Use Extra CMake Modules (ECM) for common functionality.
-# See http://api.kde.org/ecm/manual/ecm.7.html
-# and http://api.kde.org/ecm/manual/ecm-kde-modules.7.html
+# CMAKE EXTRA MODULES
 find_package(ECM REQUIRED NO_MODULE)
-# Needed by find_package(KF5Plasma) below.
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR})
 
-string(TOLOWER ${CMAKE_BUILD_TYPE} CMAKE_BUILD_TYPE_TOLOWER)
-if(CMAKE_BUILD_TYPE_TOLOWER MATCHES debugfull)
-add_definitions(-DQT_STRICT_ITERATORS)
-SET(CMAKE_VERBOSE_MAKEFILE 1)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wsign-compare -Wpointer-arith -Wmissing-declarations -Wpacked -Wswitch-enum -Wstrict-aliasing=2 -Winit-self -Wunsafe-loop-optimizations -Wno-missing-field-initializers -Wno-unused-parameter -Wno-attributes -Wno-long-long -Winline")
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
-endif()
+find_package(KF5 ${KF5_MIN_VERSION} REQUIRED COMPONENTS
+        Plasma PlasmaQuick WindowSystem ConfigWidgets XmlGui GlobalAccel I18n)
 
+include(KDECMakeSettings)
+include(KDECompilerSettings)
+include(KDEInstallDirs)
+include(ECMPackageConfigHelpers)
+
+add_subdirectory(engine)
 add_subdirectory(plasmoid)
+
+file(GLOB_RECURSE SRCS *.qml *.js main.xml *.desktop *.operations)
+add_custom_target(contents SOURCES ${SRCS})
