@@ -799,7 +799,7 @@ void bkodamaapplet::configAccepted()
 //     kDebug() <<  screen << m_screenNumber;
 //     if (screen == m_screenNumber)
 //         return;
-// 
+//
 //     if (KApplication::desktop()->numScreens() > 1 || KApplication::desktop()->isVirtualDesktop())
 //     {
 //         m_screen = KWindowSystem::workArea().intersect(KApplication::desktop()->screenGeometry(m_screenNumber));
@@ -808,15 +808,15 @@ void bkodamaapplet::configAccepted()
 //     {
 //         m_screen = KWindowSystem::workArea();
 //     }
-// 
+//
 //     kDebug() << "width: " << m_screen.width();
 //     kDebug() << "height: " << m_screen.height();
 //     QSizeF oldSize = m_screen.size();
-// 
+//
 //     // 500/800 -> svg size
 //     setMaximumSize(QSizeF(oldSize.height() * 500.0f / (800.0f * 5.0f), oldSize.height() / 5.0));
 //     resize(qBound(minimumWidth(), oldSize.width(), maximumWidth()), qBound(minimumHeight(), oldSize.height(), maximumHeight()));
-// 
+//
 //     updateScaledImage();
 // }
 
