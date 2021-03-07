@@ -1,0 +1,17 @@
+# Extract the bzip2 archive :
+ tar -xvjpf bkodama-0.2.1.tar.bz2
+ cd bkodama-0.2.1
+# Create Build directory
+ mkdir build
+ cd build
+# Specify installation directory
+ cmake -DCMAKE_INSTALL_PREFIX=`kde4-config --prefix` ..
+ make
+# Install
+ sudo make install
+
+
+ kbuildsycoca4
+
+# testing
+ plasmoidviewer bkodama

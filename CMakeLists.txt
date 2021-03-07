@@ -1,15 +1,26 @@
-# Set minimum CMake version (required for CMake 3.0 or later)
-cmake_minimum_required(VERSION 2.8.12)
+project(bkodama)
 
-# Use Extra CMake Modules (ECM) for common functionality.
-# See http://api.kde.org/ecm/manual/ecm.7.html
-# and http://api.kde.org/ecm/manual/ecm-kde-modules.7.html
-find_package(ECM REQUIRED NO_MODULE)
-# Needed by find_package(KF5Plasma) below.
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_MODULE_PATH})
+#paranoid?
+cmake_minimum_required(VERSION 2.6.2)
 
-# Locate plasma_install_package macro.
-find_package(KF5Plasma REQUIRED)
+find_package(KDE4 REQUIRED)
+include(KDE4Defaults)
+include(MacroLibrary)
 
-# Add installatation target ("make install").
-plasma_install_package(plasmoid org.podxboq.bKodama)
+add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+
+string(TOLOWER ${CMAKE_BUILD_TYPE} CMAKE_BUILD_TYPE_TOLOWER)
+if(CMAKE_BUILD_TYPE_TOLOWER MATCHES debugfull)
+add_definitions(-DQT_STRICT_ITERATORS)
+SET(CMAKE_VERBOSE_MAKEFILE 1)
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wsign-compare -Wpointer-arith -Wmissing-declarations -Wpacked -Wswitch-enum -Wstrict-aliasing=2 -Winit-self -Wunsafe-loop-optimizations -Wno-missing-field-initializers -Wno-unused-parameter -Wno-attributes -Wno-long-long -Winline")
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
+endif()
+
+add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+include_directories(${KDE4_INCLUDES})
+
+add_subdirectory(data)
+add_subdirectory(src)
+
+macro_display_feature_log()

@@ -1,0 +1,18 @@
+[Desktop Entry]
+Name=bkodama
+Comment=A friendly Kodama wandering on your desktop
+
+Type=Service
+ServiceTypes=Plasma/Applet
+Icon=bkodama
+
+X-KDE-Library=plasma_applet_bkodama
+X-KDE-PluginInfo-Author=Bernd Buschinski
+X-KDE-PluginInfo-Email=b.buschinski@web.de
+X-KDE-PluginInfo-Name=bkodama
+X-KDE-PluginInfo-Version=0.3.1
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-Category=Distraction
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true

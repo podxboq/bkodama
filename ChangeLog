@@ -1,0 +1,24 @@
+Changes since 0.3
+- Make it compile with older Qt version than 4.7 (thx davgarcia)
+
+Changes since 0.2.1
+- Fix Volumeslider not immediately enabled/disabled when SoundEnable
+  is checked or unchecked
+- Fix Volumeslider not setting the correct volume
+- Added Icon
+- Save settings across reboots
+- Make it possible to make the kodama twice as big
+- Added special hourly event
+  NOTE: The chance that it will successfully happen is very low
+        and it might not happen every hour.
+- Make time between appearance configurable
+  NOTE: It is still a random value, you can just raise the maximum.
+
+Changes since 0.2:
+- Allow applet to move when Desktop is locked
+
+Changes since 0.1:
+- Add ability to fade out while standing and sitting
+- Kodama no longer tries to walk out of the screen
+- Fix Sound does not play if it gets enabled at runtime
+- Various minor performance improvements
